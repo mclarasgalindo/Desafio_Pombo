@@ -2,6 +2,20 @@ var vida = 1;
 var altura = 0;
 var largura = 0;
 var tempo = 15;
+var criarPombodeOuro = 1500;
+var PombosCapturados = 0;
+
+//recupera o valor e salva em uma variavel
+var nivel = localStorage.getItem("nivelJogo");
+
+//tempo_mosquito
+if(nivel === 'normal'){
+    criarPombodeOuro = 1500;
+} else if(nivel === 'dificil'){
+    criarPombodeOuro = 1000;
+}else if (nivel === 'chucknorris'){
+    criarPombodeOuro = 750;
+}
 
 function ajustaTamanhoPalcoJogo(){
     altura = window.innerHeight;
@@ -45,6 +59,8 @@ function posicaoRandomica(){
 
     // matar o mosquito
     mosquito.onclick= function(){
+        PombosCapturados += 1;
+        document.getElementById('pombos_capturados').innerHTML = PombosCapturados;
         //alert('morreu');
         this.remove();
 
@@ -86,3 +102,4 @@ var cronometro = setInterval(function() {
         document.getElementById('cronometro').innerHTML = tempo;
     }
 },1000)
+
